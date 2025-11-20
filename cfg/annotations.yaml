@@ -1,0 +1,26 @@
+# cfg/annotations.yaml
+# 这里的配置告诉 autogate 去每个样本文件夹（如 CSV/train/001/）里找哪些 CSV 文件
+coordinate_systems:
+  # 第一组：CD34 / CD45 -> 只圈 H 细胞
+  - file: "annotation_CD34 ECD-A_CD45 APC-A750-A.csv"
+    channel_x: "CD34 ECD-A"
+    channel_y: "CD45 APC-A750-A"
+    populations: ["H"]
+    gate_id_prefix: "Gate_H"  # 可选，方便区分
+    parent_id: root
+
+  # 第二组：CD117 / CD45 -> 只圈 G 细胞
+  - file: "annotation_CD117 PE-A_CD45 APC-A750-A.csv"
+    channel_x: "CD117 PE-A"
+    channel_y: "CD45 APC-A750-A"
+    populations: ["G"]
+    gate_id_prefix: "Gate_G"
+    parent_id: root
+
+  # 第三组：SSC / CD45 -> 圈 C, Mono, Lym, Gra, F
+  - file: "annotation_SSC-A_CD45 APC-A750-A.csv"
+    channel_x: "SSC-A"
+    channel_y: "CD45 APC-A750-A"
+    populations: ["C", "Mono", "Lym", "Gra", "F"]
+    parent_id: root
+    # 注意：gate_id_prefix 没写时会自动生成，只要保证 populations 列表正确即可

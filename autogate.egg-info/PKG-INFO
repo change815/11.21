@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: autogate
+Version: 0.1.0
+Summary: Elastic registration driven polygon gating
+Author: Autogate Team
+Requires-Python: >=3.10
+Requires-Dist: numpy>=1.23
+Requires-Dist: pandas>=1.5
+Requires-Dist: scipy>=1.9
+Requires-Dist: SimpleITK>=2.2
+Requires-Dist: fcsparser>=0.2
+Requires-Dist: PyYAML>=6.0
+Requires-Dist: matplotlib>=3.6

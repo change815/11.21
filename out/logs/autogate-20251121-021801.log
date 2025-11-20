@@ -1,0 +1,128 @@
+2025-11-21 02:18:01,496 [INFO] autogate.pipeline: Logging configured. File: out\logs\autogate-20251121-021801.log
+2025-11-21 02:18:01,496 [INFO] autogate.cli: Using configuration: {
+  "io": {
+    "train_fcs_dir": "./data/train",
+    "train_gates_csv": "./data/gates.csv",
+    "target_fcs_dir": "./data/target",
+    "out_dir": "./out/gates",
+    "labels_dir": null,
+    "plots_dir": null,
+    "eval_truth_csv": "./data/truth_labels"
+  },
+  "panel": {
+    "channels": [
+      "CD34 ECD-A",
+      "CD117 PE-A",
+      "SSC-A",
+      "CD45 APC-A750-A"
+    ],
+    "transform": "minmax",
+    "compensation": "auto"
+  },
+  "imaging": {
+    "bins": 256,
+    "smooth_sigma": 1.0
+  },
+  "registration": {
+    "grid_spacing": 32,
+    "levels": 3,
+    "iterations": 200
+  },
+  "selection": {
+    "metric": "l2"
+  }
+}
+2025-11-21 02:18:01,496 [INFO] autogate.pipeline: Loading training data data\train\001.fcs
+2025-11-21 02:18:01,496 [INFO] autogate.io_fcs: Reading FCS data from data\train\001.fcs
+2025-11-21 02:18:01,501 [WARNING] autogate.io_fcs: Spillover matrix missing channels: CD34 ECD-A, CD117 PE-A, SSC-A, CD45 APC-A750-A
+2025-11-21 02:18:01,501 [INFO] autogate.io_fcs: No compensation applied to 001.fcs
+2025-11-21 02:18:01,521 [INFO] autogate.pipeline: Loading training data data\train\002.fcs
+2025-11-21 02:18:01,521 [INFO] autogate.io_fcs: Reading FCS data from data\train\002.fcs
+2025-11-21 02:18:01,526 [WARNING] autogate.io_fcs: Spillover matrix missing channels: CD34 ECD-A, CD117 PE-A, SSC-A, CD45 APC-A750-A
+2025-11-21 02:18:01,526 [INFO] autogate.io_fcs: No compensation applied to 002.fcs
+2025-11-21 02:18:01,541 [INFO] autogate.pipeline: Processing target file 003.fcs
+2025-11-21 02:18:01,541 [INFO] autogate.io_fcs: Reading FCS data from data\target\003.fcs
+2025-11-21 02:18:01,546 [WARNING] autogate.io_fcs: Spillover matrix missing channels: CD34 ECD-A, CD117 PE-A, SSC-A, CD45 APC-A750-A
+2025-11-21 02:18:01,546 [INFO] autogate.io_fcs: No compensation applied to 003.fcs
+2025-11-21 02:18:01,568 [INFO] autogate.selector: Selected training sample 001 with L2 distance 0.0000
+2025-11-21 02:18:01,569 [INFO] autogate.register: Starting B-spline registration: levels=3 iterations=200 grid=32
+2025-11-21 02:18:01,604 [INFO] autogate.register: Registration completed with final metric 0.000000
+2025-11-21 02:18:01,604 [INFO] autogate.selector: Selected training sample 001 with L2 distance 0.0000
+2025-11-21 02:18:01,604 [INFO] autogate.register: Starting B-spline registration: levels=3 iterations=200 grid=32
+2025-11-21 02:18:01,639 [INFO] autogate.register: Registration completed with final metric 0.000000
+2025-11-21 02:18:01,639 [INFO] autogate.selector: Selected training sample 001 with L2 distance 0.0000
+2025-11-21 02:18:01,639 [INFO] autogate.register: Starting B-spline registration: levels=3 iterations=200 grid=32
+2025-11-21 02:18:01,679 [INFO] autogate.register: Registration completed with final metric 0.000000
+2025-11-21 02:18:01,869 [INFO] autogate.pipeline: Assigned populations for 003.fcs: 8 labeled events (of 147269)
+2025-11-21 02:18:03,860 [INFO] autogate.pipeline: Completed 003.fcs in 2.32 seconds with 7 gates
+2025-11-21 02:18:03,860 [INFO] autogate.pipeline: Processing target file 006.fcs
+2025-11-21 02:18:03,860 [INFO] autogate.io_fcs: Reading FCS data from data\target\006.fcs
+2025-11-21 02:18:03,865 [WARNING] autogate.io_fcs: Spillover matrix missing channels: CD34 ECD-A, CD117 PE-A, SSC-A, CD45 APC-A750-A
+2025-11-21 02:18:03,865 [INFO] autogate.io_fcs: No compensation applied to 006.fcs
+2025-11-21 02:18:03,880 [INFO] autogate.selector: Selected training sample 001 with L2 distance 13.7477
+2025-11-21 02:18:03,880 [INFO] autogate.register: Starting B-spline registration: levels=3 iterations=200 grid=32
+2025-11-21 02:18:04,402 [INFO] autogate.register: Registration completed with final metric 0.002603
+2025-11-21 02:18:04,402 [INFO] autogate.selector: Selected training sample 001 with L2 distance 13.7477
+2025-11-21 02:18:04,402 [INFO] autogate.register: Starting B-spline registration: levels=3 iterations=200 grid=32
+2025-11-21 02:18:04,912 [INFO] autogate.register: Registration completed with final metric 0.002603
+2025-11-21 02:18:04,912 [INFO] autogate.selector: Selected training sample 001 with L2 distance 13.7477
+2025-11-21 02:18:04,912 [INFO] autogate.register: Starting B-spline registration: levels=3 iterations=200 grid=32
+2025-11-21 02:18:05,429 [INFO] autogate.register: Registration completed with final metric 0.002603
+2025-11-21 02:18:05,512 [INFO] autogate.pipeline: Assigned populations for 006.fcs: 8 labeled events (of 61400)
+2025-11-21 02:18:06,387 [INFO] autogate.pipeline: Completed 006.fcs in 2.53 seconds with 7 gates
+2025-11-21 02:18:06,387 [INFO] autogate.cli: Run summary: {
+  "targets": [
+    {
+      "file": "003.fcs",
+      "gates": 7,
+      "duration": 2.319286823272705,
+      "gate_file": "out\\gates\\003_gates.csv",
+      "labels_file": "out\\gates\\event_labels\\003_labels.csv"
+    },
+    {
+      "file": "006.fcs",
+      "gates": 7,
+      "duration": 2.527486801147461,
+      "gate_file": "out\\gates\\006_gates.csv",
+      "labels_file": "out\\gates\\event_labels\\006_labels.csv"
+    }
+  ],
+  "selections": [
+    {
+      "target": "003.fcs",
+      "plot": "CD117 PE-A__CD45 APC-A750-A",
+      "training_id": "001",
+      "distance": 0.0
+    },
+    {
+      "target": "003.fcs",
+      "plot": "CD34 ECD-A__CD45 APC-A750-A",
+      "training_id": "001",
+      "distance": 0.0
+    },
+    {
+      "target": "003.fcs",
+      "plot": "SSC-A__CD45 APC-A750-A",
+      "training_id": "001",
+      "distance": 0.0
+    },
+    {
+      "target": "006.fcs",
+      "plot": "CD117 PE-A__CD45 APC-A750-A",
+      "training_id": "001",
+      "distance": 13.747727394104004
+    },
+    {
+      "target": "006.fcs",
+      "plot": "CD34 ECD-A__CD45 APC-A750-A",
+      "training_id": "001",
+      "distance": 13.747727394104004
+    },
+    {
+      "target": "006.fcs",
+      "plot": "SSC-A__CD45 APC-A750-A",
+      "training_id": "001",
+      "distance": 13.747727394104004
+    }
+  ]
+}

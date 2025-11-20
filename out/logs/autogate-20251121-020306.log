@@ -1,0 +1,44 @@
+2025-11-21 02:03:06,173 [INFO] autogate.pipeline: Logging configured. File: out\logs\autogate-20251121-020306.log
+2025-11-21 02:03:06,173 [INFO] autogate.cli: Using configuration: {
+  "io": {
+    "train_fcs_dir": "./data/train",
+    "train_gates_csv": "./data/train/gates.csv",
+    "target_fcs_dir": "./data/target",
+    "out_dir": "./out/gates",
+    "labels_dir": null,
+    "plots_dir": null,
+    "eval_truth_csv": "./data/truth_labels"
+  },
+  "panel": {
+    "channels": [
+      "CD34 ECD-A",
+      "CD117 PE-A",
+      "SSC-A",
+      "CD45 APC-A750-A"
+    ],
+    "transform": "asinh",
+    "compensation": "auto"
+  },
+  "imaging": {
+    "bins": 256,
+    "smooth_sigma": 1.0
+  },
+  "registration": {
+    "grid_spacing": 32,
+    "levels": 3,
+    "iterations": 200
+  },
+  "selection": {
+    "metric": "l2"
+  }
+}
+2025-11-21 02:03:06,178 [INFO] autogate.pipeline: Loading training data data\train\001.fcs
+2025-11-21 02:03:06,178 [INFO] autogate.io_fcs: Reading FCS data from data\train\001.fcs
+2025-11-21 02:03:06,183 [WARNING] autogate.io_fcs: Spillover matrix missing channels: CD34 ECD-A, CD117 PE-A, SSC-A, CD45 APC-A750-A
+2025-11-21 02:03:06,183 [INFO] autogate.io_fcs: No compensation applied to 001.fcs
+2025-11-21 02:03:06,203 [INFO] autogate.pipeline: Loading training data data\train\002.fcs
+2025-11-21 02:03:06,203 [INFO] autogate.io_fcs: Reading FCS data from data\train\002.fcs
+2025-11-21 02:03:06,208 [WARNING] autogate.io_fcs: Spillover matrix missing channels: CD34 ECD-A, CD117 PE-A, SSC-A, CD45 APC-A750-A
+2025-11-21 02:03:06,208 [INFO] autogate.io_fcs: No compensation applied to 002.fcs
+2025-11-21 02:03:06,223 [INFO] autogate.pipeline: Loading training data data\train\gates.csv
+2025-11-21 02:03:06,223 [INFO] autogate.io_fcs: Reading FCS data from data\train\gates.csv

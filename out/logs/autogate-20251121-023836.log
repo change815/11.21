@@ -1,0 +1,3 @@
+2025-11-21 02:38:36,929 [INFO] autogate.pipeline: Logging configured. File: out\logs\autogate-20251121-023836.log
+2025-11-21 02:38:37,024 [WARNING] autogate.eval_f1: No truth annotations found for sample 003
+2025-11-21 02:38:37,041 [WARNING] autogate.eval_f1: No truth annotations found for sample 006

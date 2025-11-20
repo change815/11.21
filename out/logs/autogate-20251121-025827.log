@@ -1,0 +1,12 @@
+2025-11-21 02:58:27,801 [INFO] autogate.pipeline: Logging configured. File: out\logs\autogate-20251121-025827.log
+2025-11-21 02:58:27,987 [WARNING] autogate.eval_f1: Low cell count for sample 003 population UNGATED (pred=13435 truth=0)
+2025-11-21 02:58:28,030 [WARNING] autogate.eval_f1: Low cell count for sample 006 population G (pred=0 truth=53)
+2025-11-21 02:58:28,037 [INFO] autogate.eval_f1: Label evaluation written to out\gates\event_labels\evaluation.csv
+2025-11-21 02:58:28,038 [INFO] autogate.eval_f1: Macro F1: 0.5122 | Micro Precision: 0.6790 Recall: 0.6790 F1: 0.6790
+2025-11-21 02:58:28,040 [INFO] autogate.cli: Evaluation results: {
+  "macro_f1": 0.5121945421654631,
+  "micro_precision": 0.679032616282759,
+  "micro_recall": 0.679032616282759,
+  "micro_f1": 0.679032616282759,
+  "mode": "labels"
+}

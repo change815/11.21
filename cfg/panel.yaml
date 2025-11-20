@@ -1,0 +1,82 @@
+# cfg/panel.yaml
+
+io:
+  # 1. 训练阶段：原始散点 CSV 所在的根目录 (里面应该有 001, 002... 文件夹)
+  train_fcs_dir: "./data/train"
+  
+  # 2. 训练阶段：生成的“标准门”模型保存位置
+  train_gates_csv: "./data/gates.csv"
+  
+  # 3. 预测阶段：需要自动圈门的新数据目录 (FCS 或 CSV)
+  target_fcs_dir: "./data/target"
+  
+  # 4. 结果输出：圈门结果、CSV标签、图片都放在这里
+  out_dir: "./out/gates"
+  
+  # 5. 评估阶段：(可选) 如果你有测试集的真值标签，可以填这里
+  eval_truth_csv: "./data/truth_labels"
+
+panel:
+  # 汇总所有用到的通道名称 (去重后的)
+  channels:
+    - "CD34 ECD-A"
+    - "CD117 PE-A"
+    - "SSC-A"
+    - "CD45 APC-A750-A"
+  
+  # 数据变换：流式数据通常推荐 asinh，如果是已经处理好的线性值可用 linear
+  transform: "minmax"
+  compensation: "auto"
+
+  # 这里是手动填回的范围数据，注意缩进
+  ranges:
+    CD117 PE-A:
+      - 0.12288198300162134
+      - 0.9643810582333393
+    CD34 ECD-A:
+      - 0.1601873185252631
+      - 0.9330653731659383
+    CD45 APC-A750-A:
+      - 0.12430115844370594
+      - 0.9833360802864604
+    SSC-A:
+      - 0.051780271338215916
+      - 0.910495510186152
+
+imaging:
+  bins: 256
+  smooth_sigma: 1.0
+
+registration:
+  grid_spacing: 32
+  levels: 3
+  iterations: 200
+
+selection:
+  metric: "l2"
+
+logging:
+  level: "INFO"
+  log_dir: "./out/logs"
+
+visualization:
+  # 未分类细胞的颜色 (灰色)
+  ungated_color: "#D3D3D3"
+  
+  # 细胞群颜色配置 (参考了你的 annotation.py)
+  population_colors:
+    default:
+      H: "red"        # CD34+
+      G: "green"      # CD117+
+      C: "blue"
+      Mono: "orange"
+      Lym: "purple"
+      Gra: "cyan"
+      F: "magenta"
+
+evaluation:
+  mode: "auto"
+  label_column: "population"
+  sample_id_column: "sample_id"
+  event_index_column: "event_index"
+  include_ungated: true

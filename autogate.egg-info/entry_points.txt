@@ -1,0 +1,2 @@
+[console_scripts]
+autogate = autogate.cli:main
