@@ -52,6 +52,7 @@ DEFAULT_CONFIG: Dict[str, Any] = {
         "sample_id_column": "sample_id",
         "event_index_column": "event_index",
         "include_ungated": True,
+        "assign_expand_margin": 0.05,
     },
 }
 
