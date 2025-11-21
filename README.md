@@ -32,7 +32,7 @@ Autogate 是一个基于 SimpleITK B-样条弹性配准的自动圈门工具。�
 2. **创建独立虚拟环境**（推荐，避免污染系统包）：
    ```bash
    python -m venv .venv
-   source .venv/bin/activate  # Windows 使用 .venv\Scripts\activate
+   source .venv/bin/activate  # Windows PowerShell 使用 .venv\Scripts\Activate.ps1
    python -m pip install --upgrade pip
    ```
 3. **安装依赖**：
@@ -89,6 +89,14 @@ autogate init-config --directory ./cfg
 cp cfg/panel.example.yaml cfg/panel.yaml
 mkdir -p data/train data/target out/gates out/logs
 ```
+
+> **Windows 命令对照**：在 PowerShell 中可以用以下写法等价替代上述 Bash 命令：
+>
+> ```powershell
+> autogate init-config --directory .\cfg
+> Copy-Item .\cfg\panel.example.yaml .\cfg\panel.yaml
+> mkdir data\train, data\target, out\gates, out\logs
+> ```
 
 ### 2. 准备训练数据
 
