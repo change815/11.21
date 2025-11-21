@@ -140,7 +140,29 @@ def _normalize_parent_id(parent_id: Optional[str]) -> Optional[str]:
     return str(parent_id)
 
 
-def assign_populations(data: pd.DataFrame, gates: Sequence[Gate]) -> pd.DataFrame:
+def _expand_polygon(points: Sequence[Tuple[float, float]], margin: float) -> List[Tuple[float, float]]:
+    """Expand a polygon outward by a fractional ``margin`` around its centroid.
+
+    The function scales each vertex relative to the centroid. A small margin
+    (e.g., ``0.05`` for +5%) can help recover points that lie just outside the
+    drawn polygon without heavily distorting its shape.
+    """
+
+    if margin <= 0:
+        return list(points)
+
+    centroid = np.mean(points, axis=0)
+    scale = 1 + margin
+    expanded: List[Tuple[float, float]] = []
+    for x, y in points:
+        new_point = (centroid[0] + (x - centroid[0]) * scale, centroid[1] + (y - centroid[1]) * scale)
+        expanded.append(new_point)
+    return expanded
+
+
+def assign_populations(
+    data: pd.DataFrame, gates: Sequence[Gate], *, expand_margin: float = 0.05
+) -> pd.DataFrame:
     """Assign each event in ``data`` to the deepest gate it belongs to.
 
     Parameters
@@ -255,6 +277,32 @@ def assign_populations(data: pd.DataFrame, gates: Sequence[Gate]) -> pd.DataFram
         assigned_depth[update_mask] = depth
         path_str = build_path(gate_id)
         assigned_path[update_mask] = path_str
+
+    if expand_margin > 0:
+        ungated_mask = assigned_labels == "UNGATED"
+        if np.any(ungated_mask):
+            LOGGER.info(
+                "Expanding %d ungated events using margin %.3f", int(ungated_mask.sum()), expand_margin
+            )
+            for gate_id in assignment_order:
+                if gate_id not in masks:
+                    continue
+                gate = gate_map[gate_id]
+                try:
+                    points = data.loc[ungated_mask, [gate.channel_x, gate.channel_y]].to_numpy()
+                except KeyError:
+                    continue
+                expanded_poly = _expand_polygon(gate.points, expand_margin)
+                mask = points_in_polygon(points, expanded_poly)
+                if not np.any(mask):
+                    continue
+                depth = depth_cache.get(gate_id, 0)
+                update_idx = np.where(ungated_mask)[0][mask]
+                assigned_labels[update_idx] = gate.population or gate_id
+                assigned_gate_ids[update_idx] = gate_id
+                assigned_depth[update_idx] = depth
+                assigned_path[update_idx] = build_path(gate_id)
+                ungated_mask[update_idx] = False
 
     return pd.DataFrame(
         {

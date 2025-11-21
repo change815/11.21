@@ -77,6 +77,8 @@ class AutoGatePipeline:
         self.plots_dir = Path(plots_value) if plots_value else self.gates_out_dir / "plots"
         self.visual_cfg = config.get("visualization", {})
         self.default_ungated_color = self.visual_cfg.get("ungated_color", "#9e9e9e")
+        self.eval_cfg = config.get("evaluation", {})
+        self.assign_expand_margin = float(self.eval_cfg.get("assign_expand_margin", 0.05))
 
     def _list_fcs_files(self, directory: Path) -> List[Path]:
         if not directory.exists():
@@ -217,7 +219,9 @@ class AutoGatePipeline:
             out_path = out_dir / f"{target_path.stem}_gates.csv"
             write_gates(out_path, all_transformed)
 
-            labels = assign_populations(data, all_transformed)
+            labels = assign_populations(
+                data, all_transformed, expand_margin=self.assign_expand_margin
+            )
             labels_path = self.labels_dir / f"{target_path.stem}_labels.csv"
             labels.to_csv(labels_path, index=False)
             LOGGER.info(

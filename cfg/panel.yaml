@@ -80,3 +80,4 @@ evaluation:
   sample_id_column: "sample_id"
   event_index_column: "event_index"
   include_ungated: true
+  assign_expand_margin: 0.05
